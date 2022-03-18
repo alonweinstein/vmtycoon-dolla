@@ -1,0 +1,56 @@
+specVersion: 0.0.1
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: $dolla
+    network: avalanche
+    source:
+      address: "0x4B322765D761984C0f9E72200B62a9b445F38caC"
+      abi: $dolla
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - Approval
+        - Burned
+        - BurnedBusinesses
+        - BusinessesStaked
+        - BusinessesSwapped
+        - BusinessesUnStaked
+        - Minted
+        - MintedBusinesses
+        - OwnershipTransferred
+        - StakedBusinesses
+        - Transfer
+        - UnstakedBusinesses
+      abis:
+        - name: $dolla
+          file: ./abis/$dolla.json
+      eventHandlers:
+        - event: Approval(indexed address,indexed address,uint256)
+          handler: handleApproval
+        - event: Burned(address,uint256)
+          handler: handleBurned
+        - event: BurnedBusinesses(address,uint256)
+          handler: handleBurnedBusinesses
+        - event: BusinessesStaked(address,uint256)
+          handler: handleBusinessesStaked
+        - event: BusinessesSwapped(address,uint256)
+          handler: handleBusinessesSwapped
+        - event: BusinessesUnStaked(address,uint256)
+          handler: handleBusinessesUnStaked
+        - event: Minted(address,uint256)
+          handler: handleMinted
+        - event: MintedBusinesses(address,uint256)
+          handler: handleMintedBusinesses
+        - event: OwnershipTransferred(indexed address,indexed address)
+          handler: handleOwnershipTransferred
+        - event: StakedBusinesses(address,uint256)
+          handler: handleStakedBusinesses
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: handleTransfer
+        - event: UnstakedBusinesses(address,uint256)
+          handler: handleUnstakedBusinesses
+      file: ./src/mapping.ts
