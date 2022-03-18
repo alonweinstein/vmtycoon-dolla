@@ -1,6 +1,6 @@
 specVersion: 0.0.2
 schema:
-  file: ./schema.graphql
+  file: schema.graphql
 dataSources:
   - kind: ethereum
     name: $dolla
@@ -27,7 +27,7 @@ dataSources:
         - UnstakedBusinesses
       abis:
         - name: $dolla
-          file: ./abis/$dolla.json
+          file: $dolla/abis/$dolla.json
       eventHandlers:
         - event: Approval(indexed address,indexed address,uint256)
           handler: handleApproval
@@ -53,4 +53,4 @@ dataSources:
           handler: handleTransfer
         - event: UnstakedBusinesses(address,uint256)
           handler: handleUnstakedBusinesses
-      file: ./src/mapping.ts
+      file: $dolla/$dolla.wasm
